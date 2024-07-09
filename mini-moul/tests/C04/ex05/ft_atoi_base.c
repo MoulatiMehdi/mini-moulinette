@@ -47,6 +47,43 @@ int main(void)
             .base = "0123456789abcdef",
             .expected_output = -89,
         },
+        {
+            .desc = "Convert a decimal number with leading sign to decimal",
+            .str = "    -2147483648",
+            .base = "0123456789",
+            .expected_output = -2147483648,
+
+        },  
+        {
+            .desc = "Convert a binary number with leading space and sign to decimal",
+            .str = "   ---10000000000000000000000000000000" ,
+            .base= "01",
+            .expected_output = -2147483648,
+        }
+        ,{
+            .desc = "invalid base charaacters (+ -)",
+            .str = "   ---10000000000000000" ,
+            .base= "0+",
+            .expected_output = 0,
+        }
+        ,{
+            .desc = "String contains unexisting character in thhe base",
+            .str = "   ---10000000000200000" ,
+            .base= "01",
+            .expected_output = 0,
+        }
+        ,{
+            .desc = "Repeated character in the base",
+            .str = "   ---1000000000000000" ,
+            .base= "011",
+            .expected_output = 0,
+        }
+        ,{
+            .desc = "Empty base",
+            .str = "   ---1000000000000000" ,
+            .base= "",
+            .expected_output = 0,
+        }
         // Add more test cases here
     };
     int count = sizeof(tests) / sizeof(tests[0]);

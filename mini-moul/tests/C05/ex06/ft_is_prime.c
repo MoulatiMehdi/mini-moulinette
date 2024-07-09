@@ -52,6 +52,16 @@ int main(void)
             .n = -5,
             .expected = 0,
         },
+        {
+            .desc = "Is Biggest number is a prime",
+            .n = 2147483647,
+            .expected = 1,
+        },
+        {
+            .desc = "Is a negative Biggest number is a prime",
+            .n = -2147483648,
+            .expected = 0,
+        },
     };
     int count = sizeof(tests) / sizeof(tests[0]);
 

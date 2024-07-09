@@ -78,6 +78,18 @@ int main(void)
         .base = "a",
         .expected = "",
     },
+    {
+        .desc = "Largest possible positive value",
+        .nbr = 2147483647,
+        .base = "0123456789abcdef",
+        .expected = "7fffffff",
+    },
+    {
+        .desc = "Invalid character in the base",
+        .nbr = 2147483647,
+        .base = "0123456+89abcdef",
+        .expected = "",
+    },
 };
     int count = sizeof(tests) / sizeof(tests[0]);
 

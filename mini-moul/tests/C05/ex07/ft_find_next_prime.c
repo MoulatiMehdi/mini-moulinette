@@ -42,6 +42,21 @@ int main(void)
             .n = -5,
             .expected = 2,
         },
+        {
+            .desc = "Next prime Biggest is it self",
+            .n = 2147483647,
+            .expected = 2147483647,
+        },
+        {
+            .desc = "Next prime Biggest number integer",
+            .n = 2147483645,
+            .expected = 2147483647,
+        },
+        {
+            .desc = "Next prime of negative Biggest number",
+            .n = - 2147483648,
+            .expected = 2,
+        },
         // Add more test cases here
     };
     int count = sizeof(tests) / sizeof(tests[0]);
