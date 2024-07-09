@@ -48,6 +48,24 @@ int main(void)
             .power = -3,
             .expected = 0,
         },
+        {
+            .desc = "Power of a neagtive number with a even power",
+            .base = -4,
+            .power = 4,
+            .expected = 256,
+        },
+        {
+            .desc = "Power of a number with a negative power",
+            .base = 2,
+            .power = -3,
+            .expected = 0,
+        },
+        {
+            .desc = "Power of zero with a zero power",
+            .base = 0,
+            .power = 0,
+            .expected = 1,
+        },
     };
     int count = sizeof(tests) / sizeof(tests[0]);
 

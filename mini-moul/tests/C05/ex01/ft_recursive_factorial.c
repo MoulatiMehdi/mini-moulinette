@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
+#include <limits.h>
 #include "../../../../ex01/ft_recursive_factorial.c"
 #include "../../../utils/constants.h"
 
@@ -40,6 +41,16 @@ int main(void)
         {
             .desc = "Factorial of a negative number",
             .n = -5,
+            .expected = 0,
+        },
+        {
+            .desc = "Factorial of 5",
+            .n = 5,
+            .expected = 120,
+        },
+        {
+            .desc = "Factorial of the biggest negative number",
+            .n = INT_MIN,
             .expected = 0,
         },
         // Add more test cases here

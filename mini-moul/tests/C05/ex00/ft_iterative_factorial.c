@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #include "../../../../ex00/ft_iterative_factorial.c"
 #include "../../../utils/constants.h"
-
+#include <limits.h>
 typedef struct s_test
 {
     char *desc;
@@ -40,6 +40,16 @@ int main(void)
         {
             .desc = "Factorial of a negative number",
             .n = -5,
+            .expected = 0,
+        },
+        {
+            .desc = "Factorial of 5",
+            .n = 5,
+            .expected = 120,
+        },
+        {
+            .desc = "Factorial of the biggest negative number",
+            .n = INT_MIN,
             .expected = 0,
         },
         // Add more test cases here

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
+#include <limits.h>
 #include "../../../../ex04/ft_fibonacci.c"
 #include "../../../utils/constants.h"
 
@@ -42,6 +43,16 @@ int main(void)
             .n = -5,
             .expected = -1,
         },
+        {
+            .desc = "Biggest Fibonacci number in int range",
+            .n = 46,
+            .expected = 1836311903,
+        },
+        {
+            .desc = "Fibonacci of the Biggest negative number in int",
+            .n = INT_MIN,
+            .expected = -1,
+        },
         // Add more test cases here
     };
     int count = sizeof(tests) / sizeof(tests[0]);
@@ -56,15 +67,17 @@ int run_tests(t_test *tests, int count)
 
     for (i = 0; i < count; i++)
     {
+        if(i == count - 2)
+            printf("\t\t" CYAN "===> It will takes few seconds... <===\n");
         int result = ft_fibonacci(tests[i].n);
 
         if (result != tests[i].expected)
         {
-            printf("    " RED "[%d] %s Expected %d, got %d\n", i + 1, tests[i].desc, tests[i].expected, result);
+            printf("\t" RED "[%d] %s Expected %d, got %d\n", i + 1, tests[i].desc, tests[i].expected, result);
             error -= 1;
         }
         else
-        {
+    {
             printf("  " GREEN CHECKMARK GREY " [%d] %s Expected %d, got %d\n" DEFAULT, i + 1, tests[i].desc, tests[i].expected, result);
         }
     }
