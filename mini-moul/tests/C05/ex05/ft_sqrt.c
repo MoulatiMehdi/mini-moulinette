@@ -42,6 +42,11 @@ int main(void)
             .n = -5,
             .expected = 0,
         },
+        {
+            .desc = "Square root of maximun integer numbeer",
+            .n = 46340*46340,
+            .expected = 46340,
+        },
         // Add more test cases here
     };
     int count = sizeof(tests) / sizeof(tests[0]);
