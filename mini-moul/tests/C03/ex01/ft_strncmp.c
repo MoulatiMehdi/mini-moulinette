@@ -186,6 +186,13 @@ int main(void)
             .n = 4,
             .expected = 0,
         },
+        {
+            .desc = "Comparing string with \0 with \200",
+            .s1 = "\200",
+            .s2 = "\0",
+            .n = 1,
+            .expected = 128,
+        },
     };
     int count = sizeof(tests) / sizeof(tests[0]);
 

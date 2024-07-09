@@ -107,6 +107,12 @@ int main(void)
             .s2 = strdup("World"),
             .expected = -15,
         },
+        {
+            .desc = "Comparing string with \0 with \200",
+            .s1 = "\200",
+            .s2 = "\0",
+            .expected = 128,
+        },
     };
     int count = sizeof(tests) / sizeof(tests[0]);
 
@@ -128,7 +134,7 @@ int run_tests(t_test *tests, int count)
             error -= 1;
         }
         else
-        {
+    {
             printf("  " GREEN CHECKMARK GREY " [%d] %s Expected %d, got %d\n" DEFAULT, i + 1, tests[i].desc, tests[i].expected, result);
         }
     }

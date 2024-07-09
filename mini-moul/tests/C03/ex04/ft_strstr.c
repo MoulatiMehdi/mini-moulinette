@@ -16,6 +16,7 @@ int run_tests(t_test *tests, int count);
 
 int main(void)
 {
+   char empty_str[] = "";
     t_test tests[] = {
         {
             .desc = "Find a substring in the middle of a string",
@@ -46,6 +47,12 @@ int main(void)
             .str = "42 1337 Network 2021 piscine Benguerir Khouribga",
             .find = "abcd",
             .expected_output = NULL,
+        },
+        {
+            .desc ="Find nothing in a string", 
+             empty_str,
+            .find = "",
+            empty_str,
         },
     };
     int count = sizeof(tests) / sizeof(tests[0]);
