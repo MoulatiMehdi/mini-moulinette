@@ -18,6 +18,56 @@ int	main(void)
 	int	count;
 
 	t_test tests[] = {
+		{
+			.desc = "Basic string duplication",
+			.src = "Hello, world!",
+			.expected = "Hello, world!",
+		},
+		{
+			.desc = "Empty string",
+			.src = "",
+			.expected = "",
+		},
+		{
+			.desc = "String with spaces",
+			.src = "   Spaces   at   both   ends   ",
+			.expected = "   Spaces   at   both   ends   ",
+		},
+		{
+			.desc = "String with special characters",
+			.src = "!@#$%^&*()_+{}[]|\\:;\"'<>,.?/",
+			.expected = "!@#$%^&*()_+{}[]|\\:;\"'<>,.?/",
+		},
+		{
+			.desc = "Long string",
+			.src = "This is a very long string that is meant to test the memory allocation for larger inputs. It should be correctly duplicated without any issues.",
+			.expected = "This is a very long string that is meant to test the memory allocation for larger inputs. It should be correctly duplicated without any issues.",
+		},
+		{
+			.desc = "String with null characters",
+			.src = "Hello\0World",
+			.expected = "Hello",
+		},
+		{
+			.desc = "String with newline characters",
+			.src = "Line 1\nLine 2\nLine 3",
+			.expected = "Line 1\nLine 2\nLine 3",
+		},
+		{
+			.desc = "String with tab characters",
+			.src = "Column1\tColumn2\tColumn3",
+			.expected = "Column1\tColumn2\tColumn3",
+		},
+		{
+			.desc = "String with non-ASCII characters",
+			.src = "こんにちは世界",
+			.expected = "こんにちは世界",
+		},
+		{
+			.desc = "String with mixed ASCII and non-ASCII",
+			.src = "Hello, 世界!",
+			.expected = "Hello, 世界!",
+		},
 		{.desc = "ft_strdup with empty string", .src = "", .expected = ""},
 		{.desc = "ft_strdup with non-empty string", .src = "test",
 			.expected = "test"},
@@ -44,7 +94,7 @@ int	run_tests(t_test *tests, int count)
 		if (tests[i].src == NULL && result != NULL)
 		{
 			printf("    " RED "[%d] %s Expected NULL, got \"%s\"\n" DEFAULT, i
-				+ 1, tests[i].desc, result);
+		  + 1, tests[i].desc, result);
 			error -= 1;
 		}
 		else if (tests[i].src == NULL && result == NULL)
@@ -57,8 +107,8 @@ int	run_tests(t_test *tests, int count)
 			error -= 1;
 		}
 		else
-			printf("  " GREEN CHECKMARK GREY " [%d]	%s output \"%s\" as expected\n" DEFAULT, i + 1, tests[i].desc,
-				result);
+		printf("  " GREEN CHECKMARK GREY " [%d]	%s output \"%s\" as expected\n" DEFAULT, i + 1, tests[i].desc,
+		 result);
 		free(result);
 	}
 	return (error);

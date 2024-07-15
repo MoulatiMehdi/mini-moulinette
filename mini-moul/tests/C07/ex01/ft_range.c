@@ -19,6 +19,60 @@ int	main(void)
 	int	count;
 
 	t_test tests[] = {
+		{
+			.desc = "Basic range from 0 to 5",
+			.min = 0,
+			.max = 5,
+			.expected = (int[]){0, 1, 2, 3, 4, -1},
+		},
+		{
+			.desc = "Negative to positive range",
+			.min = -3,
+			.max = 3,
+			.expected = (int[]){-3, -2, -1, 0, 1, 2, -1},
+		},
+		{
+			.desc = "All negative range",
+			.min = -5,
+			.max = -1,
+			.expected = (int[]){-5, -4, -3, -2, -1},
+		},
+		{
+			.desc = "Single element range",
+			.min = 42,
+			.max = 43,
+			.expected = (int[]){42, -1},
+		},
+		{
+			.desc = "Empty range (min == max)",
+			.min = 10,
+			.max = 10,
+			.expected = NULL,
+		},
+		{
+			.desc = "Invalid range (min > max)",
+			.min = 10,
+			.max = 5,
+			.expected = NULL,
+		},
+		{
+			.desc = "Range near INT_MAX",
+			.min = 2147483645,
+			.max = 2147483647,
+			.expected = (int[]){2147483645, 2147483646, -1},
+		},
+		{
+			.desc = "Range near INT_MIN",
+			.min = -2147483648,
+			.max = -2147483646,
+			.expected = (int[]){-2147483648, -2147483647, -1},
+		},
+		{
+			.desc = "Zero to positive range",
+			.min = 0,
+			.max = 5,
+			.expected = (int[]){0, 1, 2, 3, 4, -1},
+		},
 		{.desc = "ft_range with min 0, max 0", .min = 0, .max = 0,
 			.expected = NULL},
 		{.desc = "ft_range with min 0, max 5", .min = 0, .max = 5,
@@ -46,7 +100,7 @@ int	run_tests(t_test *tests, int count)
 	{
 		result = ft_range(tests[i].min, tests[i].max);
 		expected_size = (tests[i].expected == NULL) ? 0 : (tests[i].max
-				- tests[i].min);
+			- tests[i].min);
 		if (tests[i].min >= tests[i].max)
 		{
 			if (result != NULL)
@@ -55,7 +109,7 @@ int	run_tests(t_test *tests, int count)
 				error -= 1;
 			}
 			else
-			{
+		{
 				printf("  " GREEN CHECKMARK GREY " [%d] %s Expected NULL, got NULL\n" DEFAULT, i + 1, tests[i].desc);
 			}
 		}
@@ -70,11 +124,11 @@ int	run_tests(t_test *tests, int count)
 		else if (memcmp(result, tests[i].expected, expected_size) != 0)
 		{
 			printf("    " RED "[%d] %s Expected %d, got %d\n" DEFAULT, i + 1,
-				tests[i].desc, *tests[i].expected, result[i]);
+		  tests[i].desc, *tests[i].expected, result[i]);
 			error -= 1;
 		}
 		else
-		{
+	{
 			printf("  " GREEN CHECKMARK GREY " [%d] %s Expected %d, got	%d\n" DEFAULT, i + 1, tests[i].desc, *tests[i].expected,	result[i]);
 		}
 		free(result);
