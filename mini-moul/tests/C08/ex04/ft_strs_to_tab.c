@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include "ft_stock_str.h"
 #include "../../../../ex04/ft_strs_to_tab.c"
@@ -11,7 +10,7 @@ int main(void)
     char *strs[] = {"hello", "world", "this", "is", "a", "test"};
     int size = sizeof(strs) / sizeof(char *);
     struct s_stock_str *result = ft_strs_to_tab(size, strs);
-
+    printf(RED "DON'T FORGET TO INCLUDE THE HEADER IN YOUR FILE\n");
     if (result == NULL)
     {
         printf("Error: ft_strs_to_tab returned NULL\n");

@@ -1,6 +1,4 @@
-#include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 #include "resources/ft_strs_to_tab.c"
 #include "resources/ft_stock_str.h"
 #include "../../../../ex05/ft_show_tab.c"

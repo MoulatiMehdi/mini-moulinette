@@ -11,6 +11,11 @@ int main(void)
 {
         t_point point;
         set_point(&point);
-        printf("  " GREEN CHECKMARK GREY " File was able to compile.\n" DEFAULT);
+
+        if(point.x == 42 && point.y == 21)
+                printf("  " GREEN CHECKMARK GREY " File was able to compile.\n" DEFAULT);
+        else 
+
+                printf("  " RED GREY " ERROR.\n" DEFAULT);
         return (0);
 }

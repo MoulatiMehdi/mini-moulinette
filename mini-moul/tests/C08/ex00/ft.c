@@ -1,8 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include <unistd.h>
 #include "../../../utils/constants.h"
 
 #define FUNCTION_COUNT 5
@@ -21,6 +19,7 @@ int main()
       {"ft_putstr", false},
       {"ft_strlen", false},
       {"ft_strcmp", false},
+
   };
 
   char buffer[128];

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 #include "../../../../ex02/ft_abs.h"
 #include "../../../utils/constants.h"
 
@@ -14,21 +15,31 @@ int run_tests(t_test *tests, int count);
 int main(void)
 {
         t_test tests[] = {
-            {
-                .desc = "Test 1: ABS with positive value",
-                .input = 5,
-                .expected = 5,
-            },
-            {
-                .desc = "Test 2: ABS with negative value",
-                .input = -5,
-                .expected = 5,
-            },
-            {
-                .desc = "Test 3: ABS with zero value",
-                .input = 0,
-                .expected = 0,
-            },
+                {
+                        .desc = "Test 1: ABS with positive value",
+                        .input = 5,
+                        .expected = 5,
+                },
+                {
+                        .desc = "Test 2: ABS with negative value",
+                        .input = -5,
+                        .expected = 5,
+                },
+                {
+                        .desc = "Test 3: ABS with zero value",
+                        .input = 0,
+                        .expected = 0,
+                },
+                {
+                        .desc = "Test 4: ABS with negative MAX INT value",
+                        .input = -INT_MAX,
+                        .expected = INT_MAX,
+                },
+                {
+                        .desc = "Test 3: ABS with MAX INT value",
+                        .input = INT_MAX,
+                        .expected = INT_MAX,
+                }
         };
 
         int count = sizeof(tests) / sizeof(tests[0]);
@@ -52,9 +63,8 @@ int run_tests(t_test *tests, int count)
                         error++;
                 }
                 else
-                {
-                        printf("  " GREEN CHECKMARK GREY " [%d] %s Expected %d, got %d\n" DEFAULT, i + 1, tests[i].desc, result, tests[i].expected);
-                }
+                printf("  " GREEN CHECKMARK GREY " [%d] %s Expected %d, got %d\n" DEFAULT, i + 1, tests[i].desc, result, tests[i].expected);
+
         }
         return error;
 }
