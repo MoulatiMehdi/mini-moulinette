@@ -16,8 +16,22 @@ int run_tests(t_test *tests, int count);
 
 int main(void)
 {
-   char empty_str[] = "";
+    char empty_str[] = "";
     t_test tests[] = {
+
+        {"Empty `to_find`, non-empty `str`", "hello world", "", "hello world"},
+        {"Empty `to_find`, empty `str`", "", "", ""},
+        {"Non-empty `to_find`, empty `str`", "", "test", NULL},
+        {"Exact match", "hello", "hello", "hello"},
+        {"`to_find` is longer than `str`", "short", "longerneedle", NULL},
+        {"`to_find` not in `str`", "haystack", "needle", NULL},
+        {"`to_find` at the beginning", "start here", "start", "start here"},
+        {"`to_find` at the end", "look at the end", "end", "end"},
+        {"`to_find` in the middle", "find the middle part", "middle", "middle part"},
+        {"Special characters", "special $characters$", "$char", "$characters$"},
+        {"Case sensitivity", "Case Sensitive", "sensitive", NULL},
+        {"`to_find` as a single character", "single character test", "c", "character test"},
+        {"`to_find` as a single character not in `str`", "another test", "x", NULL},
         {
             .desc = "Find a substring in the middle of a string",
             .str = "42 1337 Network 2021 piscine Benguerir Khouribga",
@@ -50,7 +64,7 @@ int main(void)
         },
         {
             .desc ="Find nothing in a string", 
-             empty_str,
+            empty_str,
             .find = "",
             empty_str,
         },
@@ -75,7 +89,7 @@ int run_tests(t_test *tests, int count)
             error -= 1;
         }
         else
-        {
+    {
             printf("  " GREEN CHECKMARK GREY " [%d] %s Expected output \"%s\", got \"%s\"\n" DEFAULT, i + 1, tests[i].desc, tests[i].expected_output, result);
         }
     }

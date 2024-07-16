@@ -32,6 +32,15 @@ int main(void)
             {.desc = "ft_putnbr(-42)",
              .n = -42,
              .expected = "-42"},
+            {.desc = "ft_putnbr(1000)",
+             .n = 1000,
+             .expected = "1000"},
+            {.desc = "ft_putnbr(-999)",
+             .n = -999,
+             .expected = "-999"},
+            {.desc = "ft_putnbr(999)",
+             .n = 999,
+             .expected = "999"},
             // Add more test cases here
         };
         int count = sizeof(tests) / sizeof(tests[0]);

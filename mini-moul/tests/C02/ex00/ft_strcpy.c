@@ -49,7 +49,7 @@ int	run_tests(t_test *tests, int count)
 	for (i = 0; i < count; i++)
 	{
 		char *result = ft_strcpy(tests[i].dest, tests[i].src);
-		
+		printf("%p",result);	
 		if (strcmp(result, tests[i].expected) != 0)
 		{
 			printf("    " RED "[%d] %s Expected \"%s\", got \"%s\"\n", i + 1, tests[i].desc, tests[i].expected, result);
