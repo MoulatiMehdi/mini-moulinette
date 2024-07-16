@@ -24,6 +24,181 @@ int	main(void)
 
 	t_test tests[] = {
 		{
+			.desc = "Decimal with invalid character",
+			.nbr = "12x34",
+			.base_from = "0123456789",
+			.base_to = "01",
+			.expected = "1100"
+		},
+		{
+			.desc = "Binary with invalid character",
+			.nbr = "1011a",
+			.base_from = "01",
+			.base_to = "0123456789",
+			.expected = "11"
+		},
+		{
+			.desc = "Hexadecimal with invalid character",
+			.nbr = "FF%G",
+			.base_from = "0123456789ABCDEF",
+			.base_to = "01234567",
+			.expected = "377"
+		},
+		{
+			.desc = "Base 5 with invalid character",
+			.nbr = "1234+",
+			.base_from = "01234",
+			.base_to = "0123456789",
+			.expected = "194"
+		},
+		{
+			.desc = "Octal with invalid character",
+			.nbr = "0728",
+			.base_from = "01234567",
+			.base_to = "0123456789",
+			.expected = "58"
+		},
+		{
+			"Decimal to binary",
+			"42",
+			"0123456789",
+			"01",
+			"101010"
+		},
+		{
+			"Decimal to hexadecimal (negative)",
+			"-42",
+			"0123456789",
+			"0123456789abcdef",
+			"-2a"
+		},
+		{
+			"Decimal to decimal with whitespace and signs",
+			"  +--+-42",
+			"0123456789",
+			"0123456789",
+			"-42"
+		},
+		{
+			"INT_MIN",
+			"-2147483648",
+			"0123456789",
+			"0123456789",
+			"-2147483648"
+		},
+		{
+			"INT_MAX",
+			"2147483647",
+			"0123456789",
+			"0123456789abcdef",
+			"7fffffff"
+		},
+		{
+			"INT_MIN to hexadecimal",
+			"-2147483648",
+			"0123456789",
+			"0123456789abcdef",
+			"-80000000"
+		},
+		{
+			"Zero",
+			"0",
+			"0123456789",
+			"01",
+			"0"
+		},
+		{
+			"Empty string (should return NULL)",
+			"",
+			"0123456789",
+			"01",
+			NULL
+		},
+		{
+			"Empty base_from (should return NULL)",
+			"42",
+			"",
+			"01",
+			NULL
+		},
+		{
+			"Empty base_to (should return NULL)",
+			"42",
+			"0123456789",
+			"",
+			NULL
+		},
+		{
+			"Invalid base_from (repeated digit)",
+			"42",
+			"01234567890",
+			"01",
+			NULL
+		},
+		{
+			"Invalid base_to (contains '+')",
+			"42",
+			"0123456789",
+			"0123456789+",
+			NULL
+		},
+		{
+			"Invalid base_from (contains space)",
+			"42",
+			"0123456789 ",
+			"01",
+			NULL
+		},
+		{
+			"Invalid base_to (single character)",
+			"42",
+			"0123456789",
+			"0",
+			NULL
+		},
+		{
+			"Binary to decimal",
+			"101010",
+			"01",
+			"0123456789",
+			"42"
+		},
+		{
+			"Custom base to decimal",
+			"bca",
+			"abcdefghij",
+			"0123456789",
+			"120"
+		},
+		{
+			"Decimal to base 16",
+			"255",
+			"0123456789",
+			"0123456789abcdef",
+			"ff"
+		},
+		{
+			"Base 16 to decimal",
+			"ff",
+			"0123456789abcdef",
+			"0123456789",
+			"255"
+		},
+		{
+			"Negative binary to decimal",
+			"-1010",
+			"01",
+			"0123456789",
+			"-10"
+		},
+		{
+			"Decimal to base 36",
+			"123456",
+			"0123456789",
+			"0123456789abcdefghijklmnopqrstuvwxyz",
+			"2n9c"
+		},
+		{
 			.desc = "Convert positive decimal to binary",
 			.nbr = "42",
 			.base_from = "0123456789",
@@ -87,11 +262,11 @@ int	main(void)
 			.expected = "42",
 		},
 		{
-			.desc = "Invalid character in number",
+			.desc = "Invalid character inside number",
 			.nbr = "42X",
 			.base_from = "0123456789",
 			.base_to = "01",
-			.expected = NULL,
+			.expected = "101010",
 		},
 		{
 			.desc = "Invalid base (duplicate character)",
@@ -213,11 +388,11 @@ int	run_tests(t_test *tests, int count)
 	for (i = 0; i < count; i++)
 	{
 		result = ft_convert_base(tests[i].nbr, tests[i].base_from,
-				tests[i].base_to);
+			   tests[i].base_to);
 		if (!result && !tests[i].expected)
 		{
-			printf(GREEN CHECKMARK GREY " [%d] %s\n" DEFAULT, i + 1,	tests[i].desc);
-		}
+      printf(GREEN CHECKMARK GREY " [%d] %s\n" DEFAULT, i + 1,	tests[i].desc);
+      }
 		else if (!result || !tests[i].expected)
 		{
 			printf(RED "[%d] %s got \"%s\" instead of \"%s\"\n" DEFAULT, i + 1,	tests[i].desc, result, tests[i].expected);
@@ -229,9 +404,9 @@ int	run_tests(t_test *tests, int count)
 			error -= 1;
 		}
 		else
-		{
-			printf(GREEN CHECKMARK GREY " [%d]	%s got \"%s\" as expected\n" DEFAULT, i + 1, tests[i].desc,	result);
-		}
+	{
+      printf(GREEN CHECKMARK GREY " [%d]	%s got \"%s\" as expected\n" DEFAULT, i + 1, tests[i].desc,	result);
+      }
 		free(result);
 	}
 	return (error);
