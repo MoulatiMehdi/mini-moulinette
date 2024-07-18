@@ -27,7 +27,7 @@ check_normenette() {
 
 
     # Check if the result starts with "Error"
-    if [[ "$result" == Error* ]]; then
+    if [[ "$(echo $result | sed -n '/Error!$/p' | tr '\n' ' ')" == *Error!* ]]; then
       echo -e "  ${FAIL} \033[1;34m $(dirname $file)/${DEAULT}$(basename $file)${DEFAULT}"  # Red crossmark (UTF-8 code)
       ((norm_error++))
       return 1  # Return non-zero to indicate error
